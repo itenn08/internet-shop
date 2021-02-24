@@ -9,8 +9,11 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
+<<<<<<< HEAD
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
+=======
+>>>>>>> 6a0511f (Initialize project using Create React App)
     "web-vitals": "^1.1.0"
   },
   "scripts": {
@@ -36,10 +39,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+<<<<<<< HEAD
   },
   "devDependencies": {
     "eslint": "^7.20.0",
     "eslint-plugin-react": "^7.22.0",
     "prettier": "2.2.1"
+=======
+>>>>>>> 6a0511f (Initialize project using Create React App)
   }
 }
