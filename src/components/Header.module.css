@@ -1,0 +1,11 @@
+.menu{
+    display: flex;
+    justify-content: space-around;
+}
+.menuItem{
+    color: #f9c402;
+}
+.container{
+    padding: 8px;
+    background: black;
+}

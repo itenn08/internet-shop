@@ -1,21 +1,16 @@
 import React from "react";
-
-import logo from "./logo.svg";
-
+import Header from "./components/Header";
+import Product from "./components/Product/Product";
+import Footer from "./components/Footer";
+import "semantic-ui-css/semantic.min.css";
 import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to relo
-        </p>
-        Learn React
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <div>
+    <Header />
+    <Product />
+    <Footer />
+  </div>
+);
 
 export default App;
