@@ -1,0 +1,12 @@
+.productItem img{
+    width: 150px;
+    height: 150px;
+}
+.productItem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    margin: 15px 0 15px 0;
+}

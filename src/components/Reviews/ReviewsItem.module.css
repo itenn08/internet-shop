@@ -1,0 +1,17 @@
+.reviewsItem{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.reviewsItemDetails{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+.orange{
+    background-color: orange !important;
+}
+.reviewsItemName{
+    font-weight: 500;
+}

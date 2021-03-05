@@ -21,7 +21,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-<<<<<<< HEAD
 .eslintcache
-=======
->>>>>>> 6a0511f (Initialize project using Create React App)
