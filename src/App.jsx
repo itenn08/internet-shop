@@ -1,16 +1,21 @@
 import React, { useEffect } from "react";
-import Header from "./components/Header";
 import Product from "./components/Product/Product";
 import ProductsList from "./components/ProductsList/ProductsList";
 import NotFound from "./components/NotFound";
-import Footer from "./components/Footer";
+import DefaultPage from "./layout/DefaultPage";
 import { useDispatch } from "react-redux";
 import { loadProducts } from "./redux/actions/product.actions";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import "./App.css";
 
 const App = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(loadProducts());
   }, [dispatch]);
@@ -18,21 +23,15 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
-          <Header />
+        <DefaultPage>
           <Route exact path="/" component={ProductsList} />
-          <Footer />
-        </Route>
-        <Route exact path="/product/:productId?">
-          <Header />
-          <Route
-            exact
-            path="/product"
-            component={() => <div>Please select product</div>}
-          />
-          <Route path="/product/:productId" component={Product} />
-          <Footer />
-        </Route>
+          <Route exact path="/product/:productId?">
+            <Route exact path="/product">
+              <Redirect to="/" />
+            </Route>
+            <Route path="/product/:productId" component={Product} />
+          </Route>
+        </DefaultPage>
         <Route component={NotFound} />
       </Switch>
     </Router>
