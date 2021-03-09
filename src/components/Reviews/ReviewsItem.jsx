@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./ReviewsItem.module.css";
 import Avatar from "@material-ui/core/Avatar";
 import Rating from "@material-ui/lab/Rating";
+import styles from "./ReviewsItem.module.css";
 
 const Reviews = (props) => {
   const shortName = (name) => name.slice(0, 1);
@@ -12,7 +12,7 @@ const Reviews = (props) => {
       <Avatar className={styles.orange}>{shortName(props.name)}</Avatar>
       <div className={styles.reviewsItemDetails}>
         <div className={styles.reviewsItemName}>{props.name}</div>
-        <Rating name="disabled" value={props.rating} disabled />
+        <Rating name="reviewTotal" value={props.rating} disabled />
         {props.text}
       </div>
     </div>
