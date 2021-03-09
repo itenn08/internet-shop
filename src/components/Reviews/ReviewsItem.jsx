@@ -1,20 +1,23 @@
 import React from "react";
-import { Comment } from "semantic-ui-react";
-import { Rating } from "semantic-ui-react";
 import PropTypes from "prop-types";
+import Avatar from "@material-ui/core/Avatar";
+import Rating from "@material-ui/lab/Rating";
+import styles from "./ReviewsItem.module.css";
 
-const Reviews = (props) => (
-  <Comment>
-    <Comment.Content>
-      <Comment.Author>{props.name}</Comment.Author>
-      <Comment.Metadata>
-        <div>{props.date}</div>
-      </Comment.Metadata>
-      <Comment.Text>{props.text}</Comment.Text>
-      <Rating icon="star" rating={props.rating} maxRating={5} disabled />
-    </Comment.Content>
-  </Comment>
-);
+const Reviews = (props) => {
+  const shortName = (name) => name.slice(0, 1);
+
+  return (
+    <div className={styles.reviewsItem}>
+      <Avatar className={styles.orange}>{shortName(props.name)}</Avatar>
+      <div className={styles.reviewsItemDetails}>
+        <div className={styles.reviewsItemName}>{props.name}</div>
+        <Rating name="reviewTotal" value={props.rating} disabled />
+        {props.text}
+      </div>
+    </div>
+  );
+};
 
 Reviews.propTypes = {
   name: PropTypes.string,

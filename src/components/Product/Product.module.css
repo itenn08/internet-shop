@@ -1,8 +1,8 @@
-.container{
+.container {
     padding: 16px;
 }
 
-.main{
+.main {
     display: grid;
     grid-template-columns: 40% 60%;
 }

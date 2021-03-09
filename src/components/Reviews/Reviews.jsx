@@ -1,12 +1,10 @@
 import React from "react";
 import ReviewsItem from "./ReviewsItem";
-import { Comment } from "semantic-ui-react";
-import { Header } from "semantic-ui-react";
 
 const Reviews = () => (
-  <div>
-    <Header as="h2">Reviews</Header>
-    <Comment.Group>
+  <>
+    <h1>Reviews</h1>
+    <div className="reviewsContainer">
       <ReviewsItem
         name="Alex"
         text="Cool product!"
@@ -25,8 +23,8 @@ const Reviews = () => (
         date="01.01.2021"
         rating="5"
       />
-    </Comment.Group>
-  </div>
+    </div>
+  </>
 );
 
 export default Reviews;
