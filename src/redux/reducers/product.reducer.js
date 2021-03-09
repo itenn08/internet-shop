@@ -14,6 +14,7 @@ export default function productsList(state = initialState, action) {
         ...state,
         loading: true,
       };
+
     case PRODUCT_TYPES.LOAD_PRODUCTS_FULFILLED:
       return {
         ...state,
@@ -21,21 +22,25 @@ export default function productsList(state = initialState, action) {
         loading: false,
         error: null,
       };
+
     case PRODUCT_TYPES.LOAD_PRODUCTS_REJECTED:
       return {
         ...state,
         loading: false,
         error: action.payload.error,
       };
-    case PRODUCT_TYPES.SELECT_PRODUCT: {
+
+    case PRODUCT_TYPES.GET_PRODUCT_BY_ID: {
       const selectProduct = state.products.find(
         (products) => products.id == action.payload
       );
+
       return {
         ...state,
         productDetails: selectProduct,
       };
     }
+
     default:
       return state;
   }

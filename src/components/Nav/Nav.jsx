@@ -4,7 +4,7 @@ import NavItem from "./NavItem";
 const Nav = () => (
   <div className="navContainer">
     <NavItem name="Products" href="/" />
-    <NavItem name="Login" href="/123/1" />
+    <NavItem name="Login" />
     <NavItem name="Register" />
   </div>
 );

@@ -2,7 +2,7 @@ import React from "react";
 import ReviewsItem from "./ReviewsItem";
 
 const Reviews = () => (
-  <div>
+  <>
     <h1>Reviews</h1>
     <div className="reviewsContainer">
       <ReviewsItem
@@ -24,7 +24,7 @@ const Reviews = () => (
         rating="5"
       />
     </div>
-  </div>
+  </>
 );
 
 export default Reviews;

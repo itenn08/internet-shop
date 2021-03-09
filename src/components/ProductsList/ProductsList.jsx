@@ -1,11 +1,12 @@
 import React from "react";
-import ProductItem from "./ProductItem";
 import { useSelector } from "react-redux";
+import ProductItem from "./ProductItem";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import styles from "./ProductsList.module.css";
 
 const ProductsList = () => {
   const { products, loading } = useSelector((state) => state);
+
   return (
     <div className={styles.container}>
       <div className="bigContainer">

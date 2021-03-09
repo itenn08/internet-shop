@@ -1,13 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import * as API from "../../utils/api";
+import PropTypes from "prop-types";
+import * as api from "../../utils/api";
 import styles from "./ProductItem.module.css";
 
 const ProductItem = (props) => (
   <Link to={`product/${props.href} `}>
     <div className={styles.productItem}>
-      <img src={`${API.ASSETS_URL}/${props.img} `} />
+      <img src={`${api.ASSETS_URL}/${props.img}`} />
       <div className={styles.productItemTitle}>{props.title}</div>
     </div>
   </Link>

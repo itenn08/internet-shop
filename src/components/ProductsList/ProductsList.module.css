@@ -1,16 +1,19 @@
-.gridProducts{
+.gridProducts {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
 }
-.loading{
+
+.loading {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-@media (max-width:767px){
-    .gridProducts{
+@media (max-width:767px) {
+
+    .gridProducts {
         display: grid;
         grid-template-columns: 50% 50%;
     }
+
 }

@@ -1,16 +1,19 @@
-.bigContainer{
+.bigContainer {
   max-width: 1366px;
-    width: calc(100% - 36px);
-    height: 100%;
-    margin: 0px auto;
+  width: calc(100% - 36px);
+  height: 100%;
+  margin: 0px auto;
 }
-.navContainer{
+
+.navContainer {
   display: flex;
   justify-content: space-around;
 }
-.navLink{
+
+.navLink {
   color: #f9c402;
 }
-.navLink:hover{
+
+.navLink:hover {
   color: #ffdb58;
 }

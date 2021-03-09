@@ -1,6 +1,6 @@
-import API from "../utils/api";
+import api from "../utils/api";
 
 const getProducts = () =>
-  API.get("/products").then((response) => response.data);
+  api.get("/products").then((response) => response.data);
 
 export default getProducts;

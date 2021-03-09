@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectProduct } from "../../redux/actions/product.actions";
+import { getProductById } from "../../redux/actions/product.actions";
 import Reviews from "../Reviews/Reviews";
 import Rating from "@material-ui/lab/Rating";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import * as API from "../../utils/api";
+import * as api from "../../utils/api";
 import styles from "./Product.module.css";
 
 const Product = () => {
@@ -17,8 +17,7 @@ const Product = () => {
 
   useEffect(() => {
     const loadProductById = (id) => {
-      dispatch(selectProduct(id));
-      console.log(productDetails);
+      dispatch(getProductById(id));
     };
 
     if (products.length && productId) {
@@ -32,12 +31,10 @@ const Product = () => {
     <div className={styles.container}>
       <div className="bigContainer">
         <div className={styles.main}>
-          <div>
-            <img src={`${API.ASSETS_URL}/${productDetails.img} `} />
-          </div>
+          <img src={`${api.ASSETS_URL}/${productDetails.img}`} />
           <div>
             <h1>{productDetails.title}</h1>
-            <Rating name="disabled" value="5" disabled />
+            <Rating name="reviewTotal" value="5" disabled />
             <div>{productDetails.text}</div>
           </div>
         </div>

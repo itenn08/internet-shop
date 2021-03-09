@@ -18,7 +18,7 @@ export const loadProducts = () => async (dispatch) => {
   }
 };
 
-export const selectProduct = (product) => ({
-  type: PRODUCT_TYPES.SELECT_PRODUCT,
-  payload: product,
+export const getProductById = (id) => ({
+  type: PRODUCT_TYPES.GET_PRODUCT_BY_ID,
+  payload: id,
 });
