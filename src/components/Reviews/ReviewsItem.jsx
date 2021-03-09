@@ -6,6 +6,7 @@ import Rating from "@material-ui/lab/Rating";
 
 const Reviews = (props) => {
   const shortName = (name) => name.slice(0, 1);
+
   return (
     <div className={styles.reviewsItem}>
       <Avatar className={styles.orange}>{shortName(props.name)}</Avatar>

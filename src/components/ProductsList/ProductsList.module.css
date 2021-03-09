@@ -1,19 +1,10 @@
 .gridProducts {
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: repeat(auto-fill, 150px);
 }
 
 .loading {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-@media (max-width:767px) {
-
-    .gridProducts {
-        display: grid;
-        grid-template-columns: 50% 50%;
-    }
-
 }
