@@ -2,7 +2,7 @@ import * as REVIEWS_TYPES from "../actions/reviews.types";
 
 const initialState = {
   reviews: [],
-  rateTotal: [],
+  rateTotal: 0,
   loading: true,
   error: null,
 };
@@ -21,9 +21,13 @@ export default function productsList(state = initialState, action) {
         0
       );
 
+      const sortedReviews = action.payload.sort((a, b) =>
+        a.created_at < b.created_at ? 1 : -1
+      );
+
       return {
         ...state,
-        reviews: action.payload,
+        reviews: sortedReviews,
         rateTotal: total / action.payload.length,
         loading: false,
         error: null,
