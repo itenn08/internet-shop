@@ -18,3 +18,7 @@
 .reviewsItemName {
     font-weight: 500;
 }
+
+.reviewItemDate {
+    color: gray;
+}

@@ -12,7 +12,7 @@ const DefaultPage = (props) => (
 );
 
 DefaultPage.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.node,
 };
 
 export default DefaultPage;
