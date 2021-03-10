@@ -10,8 +10,8 @@ import styles from "./Product.module.css";
 
 const Product = () => {
   const { productId } = useParams();
-
   const { products, productDetails } = useSelector((state) => state.products);
+  const { rateTotal } = useSelector((state) => state.reviews);
 
   const dispatch = useDispatch();
 
@@ -34,7 +34,11 @@ const Product = () => {
           <img src={`${api.ASSETS_URL}/${productDetails.img}`} />
           <div>
             <h1>{productDetails.title}</h1>
-            <Rating name="reviewTotal" value="5" disabled />
+            {!rateTotal ? (
+              <CircularProgress color="secondary" />
+            ) : (
+              <Rating name="reviewTotal" value={rateTotal} disabled />
+            )}
             <div>{productDetails.text}</div>
           </div>
         </div>
