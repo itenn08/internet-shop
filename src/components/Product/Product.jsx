@@ -11,7 +11,7 @@ import styles from "./Product.module.css";
 const Product = () => {
   const { productId } = useParams();
 
-  const { products, productDetails } = useSelector((state) => state);
+  const { products, productDetails } = useSelector((state) => state.products);
 
   const dispatch = useDispatch();
 

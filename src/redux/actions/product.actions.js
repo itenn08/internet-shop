@@ -6,6 +6,7 @@ export const loadProducts = () => async (dispatch) => {
 
   try {
     const products = await getProducts();
+
     dispatch({
       type: PRODUCT_TYPES.LOAD_PRODUCTS_FULFILLED,
       payload: Object.values(products),

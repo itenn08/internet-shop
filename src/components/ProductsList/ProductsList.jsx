@@ -5,7 +5,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import styles from "./ProductsList.module.css";
 
 const ProductsList = () => {
-  const { products, loading } = useSelector((state) => state);
+  const { products, loading } = useSelector((state) => state.products);
 
   return (
     <div className={styles.container}>
