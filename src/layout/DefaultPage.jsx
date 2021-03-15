@@ -4,11 +4,11 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 const DefaultPage = (props) => (
-  <>
+  <div className="container">
     <Header />
-    {props.children}
+    <div className="main">{props.children}</div>
     <Footer />
-  </>
+  </div>
 );
 
 DefaultPage.propTypes = {
