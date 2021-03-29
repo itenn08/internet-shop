@@ -1,25 +1,38 @@
-import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import * as Yup from "yup";
-import { Formik, Form } from "formik";
-import { AuthContext } from "../../context/AuthContext";
-import sign from "../../services/sign";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Form from "../Form/Form";
+import Field from "../Form/Field";
+import { userLogin } from "../../services/auth";
 import Message from "../Message/Message";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import styles from "./Auth.module.css";
 
 const Login = () => {
-  let history = useHistory();
+  const { isLogin } = useSelector((state) => state.user);
 
-  const [isAuthorized, setIsAuthorized] = useContext(AuthContext);
+  const [message, setMessage] = useState({
+    text: false,
+    type: "",
+  });
 
-  const [error, setError] = useState("");
-  const [messageState, showMessage] = useState(false);
+  const [password, showPassword] = useState(false);
 
-  const request = "/login/";
+  const handleClickShowPassword = () => {
+    showPassword((password) => !password);
+  };
 
-  const SignupSchema = Yup.object().shape({
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const validationSchema = Yup.object().shape({
     login: Yup.string()
       .min(3, "Too Short!")
       .max(50, "Too Long!")
@@ -29,65 +42,72 @@ const Login = () => {
       .required("Password is required"),
   });
 
-  if (isAuthorized) {
+  const initialValues = {
+    login: "",
+    password: "",
+  };
+
+  if (isLogin) {
+    let history = useHistory();
     history.push("/");
   }
 
   return (
-    <div>
-      <Formik
-        initialValues={{
-          login: "",
-          password: "",
-        }}
-        validationSchema={SignupSchema}
+    <>
+      <Form
+        initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={(values) => {
-          showMessage(true);
-          sign(
-            values.login,
-            values.password,
-            (value) => setIsAuthorized(value),
-            (error) => setError(error),
-            request
-          );
+          userLogin({
+            username: values.login,
+            password: values.password,
+            onFailure: (text) => setMessage({ text, type: "error" }),
+          });
         }}
+        className={styles.container}
       >
-        {({ errors, touched, handleChange, handleBlur }) => (
-          <Form className={styles.container}>
-            <TextField
-              id="login"
-              name="login"
-              label="login"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              error={touched.login && Boolean(errors.login)}
-              helperText={touched.login && errors.login}
-              className={styles.input}
-            />
-            <TextField
-              id="password"
-              name="password"
-              label="password"
-              type="password"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              error={touched.password && Boolean(errors.password)}
-              helperText={touched.password && errors.password}
-              className={styles.input}
-            />
-            <Button color="primary" variant="contained" fullWidth type="submit">
-              Login
-            </Button>
-            <Message
-              message={error}
-              messageState={messageState}
-              onClose={() => showMessage(false)}
-              type={error ? "error" : "success"}
-            />
-          </Form>
-        )}
-      </Formik>
-    </div>
+        <Field
+          variant="outlined"
+          placeholder="Login"
+          name="login"
+          margin="none"
+          fullWidth
+          renderComponent={TextField}
+        />
+        <Field
+          variant="outlined"
+          placeholder="Password"
+          name="password"
+          type={password ? "text" : "password"}
+          margin="none"
+          fullWidth
+          renderComponent={TextField}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
+                  {password ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+        <Button color="primary" variant="contained" fullWidth type="submit">
+          Login
+        </Button>
+      </Form>
+      {message.text && (
+        <Message
+          text={message.text}
+          type={message.type}
+          onClose={() => setMessage({ text: "", type: "" })}
+        />
+      )}
+    </>
   );
 };
 

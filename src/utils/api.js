@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "../redux/store";
 export const ASSETS_URL = "http://smktesting.herokuapp.com/static";
 export const API_URL = "http://smktesting.herokuapp.com/api";
 
@@ -8,8 +9,14 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.response.use(
   function (response) {
+    const token = localStorage.getItem("token");
+    if (token) {
+      store.dispatch({ type: "USER_LOGIN" });
+    }
+
     return response;
   },
+
   function (error) {
     window.location.href = "/logout";
     return Promise.reject(error);

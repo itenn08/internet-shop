@@ -14,7 +14,7 @@ import DefaultPage from "./layout/DefaultPage";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import { loadProducts } from "./redux/actions/product.actions";
-import { AuthContextProvider } from "./context/AuthContext";
+import { MessageContextProvider } from "./context/MessageContext";
 import "./App.css";
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <AuthContextProvider>
+    <MessageContextProvider>
       <Router>
         <Switch>
           <DefaultPage>
@@ -43,7 +43,7 @@ const App = () => {
           <Route component={NotFound} />
         </Switch>
       </Router>
-    </AuthContextProvider>
+    </MessageContextProvider>
   );
 };
 

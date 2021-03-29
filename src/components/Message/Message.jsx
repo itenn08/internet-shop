@@ -3,23 +3,32 @@ import PropTypes from "prop-types";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 
-const Message = (props) => (
-  <Snackbar
-    open={props.messageState}
-    autoHideDuration={6000}
-    onClose={props.onClose}
-  >
-    <Alert onClose={props.onClose} severity={props.type}>
-      {props.message}
-    </Alert>
-  </Snackbar>
-);
+const Message = ({ text, type, onClose }) => {
+  const [open, setOpen] = React.useState(true);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    onClose();
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity={type}>
+          {text}
+        </Alert>
+      </Snackbar>
+    </>
+  );
+};
 
 Message.propTypes = {
   type: PropTypes.string,
-  message: PropTypes.string,
+  text: PropTypes.string,
   onClose: PropTypes.func,
-  messageState: PropTypes.bool,
 };
 
 export default Message;

@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import React from "react";
+import { useSelector } from "react-redux";
 import NavItem from "./NavItem";
 
 const Nav = () => {
-  const [isAuthorized] = useContext(AuthContext);
+  const { isLogin } = useSelector((state) => state.user);
 
   return (
     <div className="navContainer">
       <NavItem name="Products" href="/" />
-      {isAuthorized ? (
+      {isLogin ? (
         <NavItem name="Logout" href="/logout" />
       ) : (
         <>

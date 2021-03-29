@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import { userLogout } from "../../redux/actions/user.actions";
 
 const Logout = () => {
-  let history = useHistory();
+  const history = useHistory();
 
-  const [, setIsAuthorized] = useContext(AuthContext);
+  const dispatch = useDispatch();
 
-  setIsAuthorized(false);
+  useEffect(() => {
+    dispatch(userLogout());
+  }, [dispatch]);
 
   history.push("/login");
 
