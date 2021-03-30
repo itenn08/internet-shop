@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 import * as api from "../../utils/api";
 import styles from "./ProductItem.module.css";
 
-const ProductItem = (props) => (
-  <Link to={`product/${props.id}`}>
+const ProductItem = ({ id, img, title }) => (
+  <Link to={`product/${id}`}>
     <div className={styles.productItem}>
-      <img src={`${api.ASSETS_URL}/${props.img}`} />
-      <div className={styles.productItemTitle}>{props.title}</div>
+      <img src={`${api.ASSETS_URL}/${img}`} />
+      <div className={styles.productItemTitle}>{title}</div>
     </div>
   </Link>
 );

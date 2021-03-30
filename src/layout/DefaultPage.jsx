@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-const DefaultPage = (props) => (
-  <>
+const DefaultPage = ({ children }) => (
+  <div className="container">
     <Header />
-    {props.children}
+    <div className="main">{children}</div>
     <Footer />
-  </>
+  </div>
 );
 
 DefaultPage.propTypes = {
