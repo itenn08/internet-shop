@@ -6,7 +6,7 @@ import Alert from "@material-ui/lab/Alert";
 const Message = ({ text, type, onClose }) => {
   const [open, setOpen] = React.useState(true);
 
-  const handleClose = (event, reason) => {
+  const handleClose = (reason) => {
     if (reason === "clickaway") {
       return;
     }
@@ -15,13 +15,11 @@ const Message = ({ text, type, onClose }) => {
   };
 
   return (
-    <>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity={type}>
-          {text}
-        </Alert>
-      </Snackbar>
-    </>
+    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      <Alert onClose={handleClose} severity={type}>
+        {text}
+      </Alert>
+    </Snackbar>
   );
 };
 

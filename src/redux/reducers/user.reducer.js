@@ -1,21 +1,21 @@
 import * as USER_TYPES from "../actions/user.types";
 
 const initialState = {
-  isLogin: false,
+  isAuthorized: false,
 };
 
 export default function user(state = initialState, action) {
   switch (action.type) {
-    case USER_TYPES.USER_LOGIN:
+    case USER_TYPES.LOGIN:
       return {
         ...state,
-        isLogin: true,
+        isAuthorized: true,
       };
-    
-    case USER_TYPES.USER_LOGOUT:
+
+    case USER_TYPES.LOGOUT:
       return {
         ...state,
-        isLogin: false,
+        isAuthorized: false,
       };
 
     default:

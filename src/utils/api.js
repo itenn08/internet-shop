@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "../redux/store";
+import { STORAGE_TOKEN } from "../constants/storage";
 export const ASSETS_URL = "http://smktesting.herokuapp.com/static";
 export const API_URL = "http://smktesting.herokuapp.com/api";
 
@@ -9,9 +10,9 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.response.use(
   function (response) {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem(STORAGE_TOKEN);
     if (token) {
-      store.dispatch({ type: "USER_LOGIN" });
+      store.dispatch({ type: "LOGIN" });
     }
 
     return response;
@@ -25,7 +26,7 @@ axiosInstance.interceptors.response.use(
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem(STORAGE_TOKEN);
     if (token) {
       config.headers.authorization = `Token ${token}`;
     }

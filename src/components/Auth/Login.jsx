@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Form from "../Form/Form";
 import Field from "../Form/Field";
-import { userLogin } from "../../services/auth";
+import { login } from "../../services/auth";
 import Message from "../Message/Message";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -15,21 +15,12 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import styles from "./Auth.module.css";
 
 const Login = () => {
-  const { isLogin } = useSelector((state) => state.user);
-
-  const [message, setMessage] = useState({
-    text: false,
-    type: "",
-  });
-
-  const [password, showPassword] = useState(false);
+  const { isAuthorized } = useSelector((state) => state.user);
+  const [message, setMessage] = useState("");
+  const [password, toggleShowPassword] = useState(false);
 
   const handleClickShowPassword = () => {
-    showPassword((password) => !password);
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+    toggleShowPassword((password) => !password);
   };
 
   const validationSchema = Yup.object().shape({
@@ -47,23 +38,25 @@ const Login = () => {
     password: "",
   };
 
-  if (isLogin) {
-    let history = useHistory();
+  if (isAuthorized) {
+    const history = useHistory();
     history.push("/");
   }
+
+  const onSubmit = (values) => {
+    login({
+      username: values.login,
+      password: values.password,
+      onFailure: (text) => setMessage(text),
+    });
+  };
 
   return (
     <>
       <Form
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          userLogin({
-            username: values.login,
-            password: values.password,
-            onFailure: (text) => setMessage({ text, type: "error" }),
-          });
-        }}
+        onSubmit={onSubmit}
         className={styles.container}
       >
         <Field
@@ -88,7 +81,6 @@ const Login = () => {
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
                 >
                   {password ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
@@ -100,12 +92,8 @@ const Login = () => {
           Login
         </Button>
       </Form>
-      {message.text && (
-        <Message
-          text={message.text}
-          type={message.type}
-          onClose={() => setMessage({ text: "", type: "" })}
-        />
+      {message && (
+        <Message text={message} type="error" onClose={() => setMessage("")} />
       )}
     </>
   );

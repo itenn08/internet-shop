@@ -1,12 +1,13 @@
 import api from "../utils/api";
 import store from "../redux/store";
+import { STORAGE_TOKEN } from "../constants/storage";
 
 function UserException(message) {
   this.message = message;
   this.name = "Error";
 }
 
-export const userRegister = async ({ username, password, onFailure }) => {
+export const register = async ({ username, password, onFailure }) => {
   const response = await api.post("/register/", { username, password });
 
   if (!response.data.success) {
@@ -14,11 +15,11 @@ export const userRegister = async ({ username, password, onFailure }) => {
     throw new UserException(response.data.message);
   }
 
-  localStorage.setItem("token", response.data.token);
-  store.dispatch({ type: "USER_LOGIN" });
+  localStorage.setItem(STORAGE_TOKEN, response.data.token);
+  store.dispatch({ type: "LOGIN" });
 };
 
-export const userLogin = async ({ username, password, onFailure }) => {
+export const login = async ({ username, password, onFailure }) => {
   const response = await api.post("/login/", { username, password });
 
   if (!response.data.success) {
@@ -26,6 +27,6 @@ export const userLogin = async ({ username, password, onFailure }) => {
     throw new UserException(response.data.message);
   }
 
-  localStorage.setItem("token", response.data.token);
-  store.dispatch({ type: "USER_LOGIN" });
+  localStorage.setItem(STORAGE_TOKEN, response.data.token);
+  store.dispatch({ type: "LOGIN" });
 };

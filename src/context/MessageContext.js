@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 export const MessageContext = createContext();
 
 export const MessageContextProvider = (props) => {
-  // const [messageText, setMessage] = useState("");
   const [messageText, setMessage] = useState("");
 
   return (

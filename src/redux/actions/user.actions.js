@@ -1,11 +1,11 @@
 import * as USER_TYPES from "./user.types";
 
-export const userLogin = () => ({
-  type: USER_TYPES.USER_LOGIN,
+export const login = () => ({
+  type: USER_TYPES.LOGIN,
   payload: true,
 });
 
-export const userLogout = () => ({
-  type: USER_TYPES.USER_LOGOUT,
+export const logout = () => ({
+  type: USER_TYPES.LOGOUT,
   payload: false,
 });

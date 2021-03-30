@@ -3,12 +3,12 @@ import { useSelector } from "react-redux";
 import NavItem from "./NavItem";
 
 const Nav = () => {
-  const { isLogin } = useSelector((state) => state.user);
+  const { isAuthorized } = useSelector((state) => state.user);
 
   return (
     <div className="navContainer">
       <NavItem name="Products" href="/" />
-      {isLogin ? (
+      {isAuthorized ? (
         <NavItem name="Logout" href="/logout" />
       ) : (
         <>

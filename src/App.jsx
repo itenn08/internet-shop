@@ -21,8 +21,11 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadProducts());
-  }, [dispatch]);
+    const handleLoadProducts = () => {
+      dispatch(loadProducts());
+    };
+    handleLoadProducts();
+  });
 
   return (
     <MessageContextProvider>
