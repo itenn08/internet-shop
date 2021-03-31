@@ -1,5 +1,5 @@
 import * as REVIEWS_TYPES from "./reviews.types";
-import getReviews from "../../services/reviews";
+import { getReviews } from "../../services/reviews";
 
 export const getReviewsById = (id) => async (dispatch) => {
   dispatch({ type: REVIEWS_TYPES.LOAD_REVIEWS_PENDING });
