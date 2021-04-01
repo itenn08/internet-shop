@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import { postReview } from "../../services/reviews";
+import postReview from "../../services/postReview";
 import Form from "../Form/Form";
 import Field from "../Form/Field";
 import RatingInput from "../Form/RatingInput";
@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 
 const ReviewsForm = ({ id }) => {
   const { isAuthorized } = useSelector((state) => state.user);
+  const [reviewForm, showReviewForm] = useState(true);
 
   const validationSchema = Yup.object().shape({
     text: Yup.string().min(3, "Too Short!").required("Required"),
@@ -28,34 +29,35 @@ const ReviewsForm = ({ id }) => {
       rate: values.rate,
       id,
     });
+    showReviewForm(false);
   };
 
+  if (!isAuthorized) return "Please login";
+
+  if (!reviewForm)
+    return <div className="containerText">Thanks for feedback</div>;
+
   return (
-    <>
-      {isAuthorized ? (
-        <Form
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={onSubmit}
-          className="reviewsContainer"
-        >
-          <Field
-            variant="outlined"
-            placeholder="Text"
-            name="text"
-            margin="none"
-            fullWidth
-            renderComponent={TextField}
-          />
-          <RatingInput name="rate" />
-          <Button color="primary" variant="contained" fullWidth type="submit">
-            Send
-          </Button>
-        </Form>
-      ) : (
-        "please login"
-      )}
-    </>
+    <Form
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+      className="reviewsContainer"
+    >
+      <RatingInput name="rate" />
+      <Field
+        variant="outlined"
+        placeholder="Text"
+        name="text"
+        margin="none"
+        fullWidth
+        renderComponent={TextField}
+        className="formInput"
+      />
+      <Button color="primary" variant="contained" fullWidth type="submit">
+        Send
+      </Button>
+    </Form>
   );
 };
 

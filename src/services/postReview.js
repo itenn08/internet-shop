@@ -7,10 +7,7 @@ function UserException(message) {
   this.name = "Error";
 }
 
-export const getReviews = (id) =>
-  api.get(`/reviews/${id}`).then((response) => response.data);
-
-export const postReview = async ({ rate, text, id }) => {
+const postReview = async ({ rate, text, id }) => {
   const response = await api.post(`/reviews/${id}`, { rate, text });
 
   if (!response.data.success) {
@@ -18,3 +15,5 @@ export const postReview = async ({ rate, text, id }) => {
   }
   store.dispatch(getReviewsById(id));
 };
+
+export default postReview;
