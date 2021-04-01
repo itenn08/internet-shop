@@ -1,6 +1,4 @@
 import api from "../utils/api";
-import store from "../redux/store";
-import { getReviewsById } from "../redux/actions/reviews.actions";
 
 function UserException(message) {
   this.message = message;
@@ -13,7 +11,6 @@ const postReview = async ({ rate, text, id }) => {
   if (!response.data.success) {
     throw new UserException(response.data.message);
   }
-  store.dispatch(getReviewsById(id));
 };
 
 export default postReview;

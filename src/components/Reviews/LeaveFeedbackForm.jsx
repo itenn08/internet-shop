@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import postReview from "../../services/postReview";
+import postAndGetReview from "../../services/postAndGetReview";
 import Form from "../Form/Form";
 import Field from "../Form/Field";
 import RatingInput from "../Form/RatingInput";
@@ -24,11 +24,12 @@ const ReviewsForm = ({ id }) => {
   };
 
   const onSubmit = (values) => {
-    postReview({
+    postAndGetReview({
       text: values.text,
       rate: values.rate,
       id,
     });
+
     showReviewForm(false);
   };
 
@@ -52,7 +53,6 @@ const ReviewsForm = ({ id }) => {
         margin="none"
         fullWidth
         renderComponent={TextField}
-        className="formInput"
       />
       <Button color="primary" variant="contained" fullWidth type="submit">
         Send
