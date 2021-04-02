@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import { postAndGetReview } from "../../services/reviews";
+import { postAndGetReview } from "../../redux/actions/reviews.actions";
+import { useDispatch } from "react-redux";
 import Form from "../Form/Form";
 import Field from "../Form/Field";
 import RatingInput from "../Form/RatingInput";
@@ -12,6 +13,7 @@ import Button from "@material-ui/core/Button";
 const ReviewsForm = ({ id }) => {
   const { isAuthorized } = useSelector((state) => state.user);
   const [reviewForm, showReviewForm] = useState(true);
+  const dispatch = useDispatch();
 
   const validationSchema = Yup.object().shape({
     text: Yup.string().min(3, "Too Short!").required("Required"),
@@ -24,11 +26,7 @@ const ReviewsForm = ({ id }) => {
   };
 
   const onSubmit = (values) => {
-    postAndGetReview({
-      text: values.text,
-      rate: values.rate,
-      id,
-    });
+    dispatch(postAndGetReview({ text: values.text, rate: values.rate, id }));
 
     showReviewForm(false);
   };

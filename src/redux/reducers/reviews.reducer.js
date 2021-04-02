@@ -41,6 +41,13 @@ export default function productsList(state = initialState, action) {
         error: action.payload.error,
       };
 
+    case REVIEWS_TYPES.POST_AND_GET_REVIEW_REJECTED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
+
     default:
       return state;
   }
