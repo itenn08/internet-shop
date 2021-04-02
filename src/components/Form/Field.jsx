@@ -12,6 +12,7 @@ const Field = (props) => {
       helperText={meta.touched && meta.error}
       error={meta.touched && Boolean(meta.error)}
       {...restProps}
+      margin="normal"
     />
   );
 };

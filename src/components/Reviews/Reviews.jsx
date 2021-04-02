@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getReviewsById } from "../../redux/actions/reviews.actions";
 import ReviewsItem from "./ReviewsItem";
+import LeaveFeedbackForm from "./LeaveFeedbackForm";
 
 const Reviews = () => {
   const { productId } = useParams();
@@ -19,6 +20,7 @@ const Reviews = () => {
   return (
     <>
       <h1>Reviews</h1>
+      <LeaveFeedbackForm id={productId} />
       <div className="reviewsContainer">
         {reviews.map((review) => (
           <ReviewsItem key={review.id} review={review} />
