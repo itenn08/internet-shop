@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import postAndGetReview from "../../services/postAndGetReview";
+import { postAndGetReview } from "../../services/postAndGetReviews";
 import Form from "../Form/Form";
 import Field from "../Form/Field";
 import RatingInput from "../Form/RatingInput";
